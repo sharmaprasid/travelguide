@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
-const signIn = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const oldUser = await UserModel.findOne({ email });
@@ -24,7 +24,7 @@ const signIn = async (req, res) => {
     console.log(error);
   }
 };
-const signUp = async (req, res) => {
+const register = async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
   try {
     const oldUser = await UserModel.findOne({ email });
@@ -48,4 +48,4 @@ const signUp = async (req, res) => {
   }
 };
 
-module.exports = { signIn, signUp };
+module.exports = { login, register };
