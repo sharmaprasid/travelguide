@@ -38,7 +38,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center  ">
+    <div className="flex justify-center mb-8  ">
       <form
         method="post"
         className=" border-2 flex flex-col gap-4 justify-center items-center shadow-lg shadow-indigo-500/40 mt-11"
@@ -46,27 +46,41 @@ const Register = () => {
       >
         <RxAvatar className="text-4xl mt-5" />
         <p className="text-2xl font-serif">Register</p>
-        <div className="flex flex-col ">
-          <div className="flex justify-around">
-            <label className=" ml-6">FirstName</label>
-            <label className="">FirstName</label>
-          </div>
+        <div className="flex flex-col justify-center ">
+          <div className="flex  justify-between gap-5     py-2 ">
+            <div>
+              <label className="mr-4 ">First Name</label>
+              <div
+                className=" border-b-2   border-gray-200 text-gray-400"
+                style={{ width: "106px" }}
+              >
+                <input
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={handleInputChange}
+                  className="h-8 hover:border-gray-100"
+                  style={{ width: "106px" }}
+                />
+              </div>
+            </div>
 
-          <div className="flex  justify-around  gap-3 px-2 border-b-2  border-gray-200 text-gray-400 py-2 ">
-            <input
-              type="text"
-              name="firstName"
-              value={firstName}
-              onChange={handleInputChange}
-              className="h-8 hover:border-gray-100"
-            />
-            <input
-              type="text"
-              name="lastName"
-              value={lastName}
-              onChange={handleInputChange}
-              className="h-8 hover:border-gray-100"
-            />
+            <div>
+              <label className="">Last Name</label>
+              <div
+                className=" border-b-2  border-gray-200"
+                style={{ width: "106px" }}
+              >
+                <input
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                  onChange={handleInputChange}
+                  className="h-8 hover:border-gray-100"
+                  style={{ width: "106px" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

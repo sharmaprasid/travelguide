@@ -52,8 +52,8 @@ const Login = () => {
         <p className="text-2xl font-serif">LOGIN</p>
         <div className="flex flex-col ">
           <label className="mb-4">Email</label>
-          <div className="flex  gap-3 px-2 border-b-2 border-gray-200 text-gray-400 py-2 ">
-            <AiOutlineMail className="text-xl mt-2" />
+          <div className="flex  gap-3 px-2 border-b-2 border-gray-200  py-2 ">
+            <AiOutlineMail className="text-xl mt-2 text-gray-400" />
             <input
               type="text"
               name="email"
@@ -66,8 +66,8 @@ const Login = () => {
         </div>
         <div className="flex flex-col ">
           <label className="mb-4">Password</label>
-          <div className="flex  gap-3 px-2 border-b-2  border-gray-200 text-gray-400 py-2 ">
-            <AiOutlineLock className="text-xl mt-2" />
+          <div className="flex  gap-3 px-2 border-b-2  border-gray-200  py-2 ">
+            <AiOutlineLock className="text-xl mt-2 text-gray-400" />
             <input
               type="password"
               name="password"
