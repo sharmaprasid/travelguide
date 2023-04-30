@@ -1,13 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from "../store/features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const initialState = { email: "", password: "" };
+  const initialState = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
   const [formValue, setFormValue] = useState(initialState);
-  const { email, password } = formValue;
-  const handelForm = () => {};
+  const { firstName, lastName, email, password, confirmPassword } = formValue;
+  const { loading, error } = useSelector((state) => ({ ...state.auth }));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+  const handleInputChange = (e) => {
+    let { name, value } = e.target;
+    setFormValue({ ...formValue, [name]: value });
+  };
+
+  const handelForm = (e) => {
+    e.preventDefault();
+    if (password != confirmPassword) {
+      return toast.error("Password doesn't match");
+    }
+    if (email && password && firstName && lastName && confirmPassword) {
+      dispatch(register({ formValue, navigate, toast }));
+    }
+  };
+
   return (
     <div className="flex justify-center  ">
       <form
@@ -25,21 +54,17 @@ const Register = () => {
 
           <div className="flex  justify-around  gap-3 px-2 border-b-2  border-gray-200 text-gray-400 py-2 ">
             <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => {
-                e.target.value;
-              }}
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={handleInputChange}
               className="h-8 hover:border-gray-100"
             />
             <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => {
-                e.target.value;
-              }}
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={handleInputChange}
               className="h-8 hover:border-gray-100"
             />
           </div>
@@ -54,9 +79,7 @@ const Register = () => {
               name="email"
               value={email}
               placeholder="johndoe@gmail.com"
-              onChange={(e) => {
-                e.target.value;
-              }}
+              onChange={handleInputChange}
               className="h-8"
             />
           </div>
@@ -69,24 +92,20 @@ const Register = () => {
               type="password"
               name="password"
               value={password}
-              onChange={(e) => {
-                e.target.value;
-              }}
+              onChange={handleInputChange}
               className="h-8 hover:border-gray-100"
             />
           </div>
         </div>
         <div className="flex flex-col ">
-          <label className="mb-4">Password</label>
+          <label className="mb-4"> Confirm Password</label>
           <div className="flex  gap-3 px-2 border-b-2  border-gray-200 text-gray-400 py-2 ">
             <AiOutlineLock className="text-xl mt-2" />
             <input
               type="password"
-              name="password"
-              value={password}
-              onChange={(e) => {
-                e.target.value;
-              }}
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleInputChange}
               className="h-8 hover:border-gray-100"
             />
           </div>
@@ -94,10 +113,11 @@ const Register = () => {
 
         <button
           type="submit"
-          onSubmit={handelForm}
           className=" border-2 h-12  bg-[#1877F2] hover:bg-[#4b94f3] text-white text-xl mt-5  content-center"
           style={{ width: "240px" }}
+          onClick={handelForm}
         >
+          {loading && <div className="animate-spin h-5 w-5 mr-3"></div>}
           Register
         </button>
         <p className="mb-6 text-gray-600">

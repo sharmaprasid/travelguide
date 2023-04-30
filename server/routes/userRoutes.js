@@ -1,8 +1,14 @@
-const express = require("express");
+const {
+  googleSignIn,
+  signin,
+  signup,
+} = require("../controller/userController");
 
+const express = require("express");
 const router = express.Router();
-const { login, register } = require("../controller/userController");
-router.post("/login", login);
-router.post("/register", register);
+
+router.post("/signup", signup);
+router.post("/signin", signin);
+router.post("/googleSignIn", googleSignIn);
 
 module.exports = router;
