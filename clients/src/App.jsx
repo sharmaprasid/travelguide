@@ -17,9 +17,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/register" element={<Register />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/tours" element={<Tours />} />
         </Route>
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/tours" element={<Tours />} />
       </Routes>
       <ToastContainer />
     </>
